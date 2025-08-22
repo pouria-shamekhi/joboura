@@ -32,7 +32,6 @@ def fetch_jobs(keyword, country_code, max_age_days=15, limit=10, api_key=None):
         raise Exception(f"Error {response.status_code}: {response.text}")
 
 if __name__ == "__main__":
-    # خواندن ورودی از فایل JSON
     with open("scrapper_input.json", "r", encoding="utf-8") as f:
         config = json.load(f)
 
@@ -44,6 +43,5 @@ if __name__ == "__main__":
 
     jobs = fetch_jobs(keyword, country_code, max_age_days, limit, api_key)
 
-    # ذخیره خروجی
     with open("scrapper_output_foreign.json", "w", encoding="utf-8") as f:
         json.dump(jobs, f, ensure_ascii=False, indent=2)
