@@ -143,11 +143,6 @@ npm run dev
 
 ---
 
-## 📸 دیاگرام
-
-![Joboura Diagram](docs/diagram.png)
-
----
 
 ## 📜 نقشه راه (Roadmap)
 
