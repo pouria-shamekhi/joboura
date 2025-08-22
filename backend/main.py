@@ -25,7 +25,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # بهتره در حالت واقعی فقط localhost:3000 باشه
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -102,7 +102,6 @@ def process_resume(resume: ResumeInput, db: Session = Depends(get_db)):
         gemini_text = gemini_data["candidates"][0]["content"]["parts"][0]["text"]
         print("Gemini raw text:", gemini_text)
 
-        # حذف بلاک کد Markdown
         if gemini_text.startswith("```"):
             gemini_text = gemini_text.strip("`\n ")
             if gemini_text.lower().startswith("json"):
@@ -116,7 +115,6 @@ def process_resume(resume: ResumeInput, db: Session = Depends(get_db)):
             "raw_response": gemini_data,
         }
 
-    # اگه JSON خالی یا ناقص بود، اسکرپر اجرا نشه
     if (
         not gemini_output
         or "foreign" not in gemini_output
@@ -132,11 +130,9 @@ def process_resume(resume: ResumeInput, db: Session = Depends(get_db)):
     with open("scrapper_input.json", "w", encoding="utf-8") as f:
         json.dump(gemini_output, f, ensure_ascii=False, indent=2)
 
-    # اجرای اسکرپرها فقط وقتی فایل درست ساخته شده
     subprocess.run(["python", "foreign_scrapper.py"])
     subprocess.run(["python", "ir_scrapper.py"])
 
-    # پاک کردن نتایج قبلی
     db.query(models.JobResult).filter(models.JobResult.source == "foreign").delete()
     db.query(models.JobResult).filter(models.JobResult.source == "iran").delete()
     db.commit()
