@@ -4,7 +4,7 @@
     "country_code": "US",
     "max_age_days": 15,
     "limit": 10,
-    "api_key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwb3VyeWE0Nzc0QGdtYWlsLmNvbSIsInBlcm1pc3Npb25zIjoidXNlciIsImNyZWF0ZWRfYXQiOiIyMDI1LTA4LTEwVDE2OjQxOjU3LjQ1ODc2MSswMDowMCJ9.XnsZkas1Y03CucLm6u6SW6232F49NYuwxUHS8cspE7w"
+    "api_key": ""
   },
   "iran": {
     "keyword": "پایتون جاوا",
